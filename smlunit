@@ -30,7 +30,7 @@ except IOError:
 
 start_time = time.time()
 
-command = r'echo "use \"lib/smlunit.sml\"; use \"%s\"" | sml -Cprint.depth=100 -Cprint.length=1000' % filename # lol
+command = r'echo "use \"./smlunit/smlunit.sml\"; use \"%s\"" | sml -Cprint.depth=100 -Cprint.length=1000' % filename # lol
 output_lines = subprocess.Popen(command, shell=True,stdout=subprocess.PIPE).communicate()[0].splitlines()
 
 # Ignore all the lines prior to the first test and the last two lines
@@ -92,7 +92,7 @@ for test in tests:
 	status = test['status']
 	expected = test['values']['expected'] if test['values'] is not None else "LOLIDK"
 	actual = test['values']['actual'] if test['values'] is not None else "LOLIDK"
-	print test['desc'].ljust(70, '.') + colours[status] + status.rjust(4, '.') + colours['END']
+	print test['desc'].ljust(100, '.') + colours[status] + status.rjust(4, '.') + colours['END']
 	if status == 'FAIL':
 		print colours['OTHER'] + "    Expected: " + colours['END'] + expected
 		print colours['OTHER'] + "    Actual: " + colours['END'] + actual
